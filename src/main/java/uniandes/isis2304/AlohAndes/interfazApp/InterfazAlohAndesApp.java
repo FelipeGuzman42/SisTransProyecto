@@ -228,7 +228,7 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener {
 			int wifi = JOptionPane.showConfirmDialog(this, "Tiene wifi?");
 			String precio = JOptionPane.showInputDialog(this, "Precio de la oferta?", "Adicionar oferta",
 					JOptionPane.QUESTION_MESSAGE);
-			if (capacidad != null && piscina == 2 && parqueadero == 2 && tvCable == 2 && wifi == 2 && precio != null) {
+			if (capacidad != null && piscina != 2 && parqueadero != 2 && tvCable != 2 && wifi != 2 && precio != null) {
 				boolean pis = false, par = false, tv = false, wi = false;
 				if (piscina == 0)
 					pis = true;
@@ -345,7 +345,8 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener {
 			int habitacion = JOptionPane.showConfirmDialog(this, "Tiene habitación compartida?");
 			String precio = JOptionPane.showInputDialog(this, "Precio de la oferta?", "Adicionar oferta",
 					JOptionPane.QUESTION_MESSAGE);
-			if (habitacion == 2 && precio != null) {
+			System.out.println("Hab "+habitacion+" precio "+precio);
+			if (habitacion != 2 && precio != null) {
 				boolean hab = false;
 				if (habitacion == 0)
 					hab = true;
@@ -462,7 +463,7 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener {
 					JOptionPane.QUESTION_MESSAGE);
 			String gym = JOptionPane.showInputDialog(this, "Precio del gimnasio?", "Adicionar Vivienda Universitaria",
 					JOptionPane.QUESTION_MESSAGE);
-			if (habitacion == 2 && precio != null && rest != null && sala != null && gym != null) {
+			if (habitacion != 2 && precio != null && rest != null && sala != null && gym != null) {
 				boolean hab = false;
 				if (habitacion == 0)
 					hab = true;
@@ -579,7 +580,7 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener {
 			int bano = JOptionPane.showConfirmDialog(this, "Tiene baño compartido?");
 			String costo = JOptionPane.showInputDialog(this, "Precio de los servicios?", "Adicionar Apartamento",
 					JOptionPane.QUESTION_MESSAGE);
-			if (habitacion == 2 && precio != null && amoblado == 2 && comida == 2 && bano == 2 && costo != null) {
+			if (habitacion != 2 && precio != null && amoblado != 2 && comida != 2 && bano != 2 && costo != null) {
 				boolean hab = false, amo = false, com = false, ban = false;
 				if (habitacion == 0)
 					hab = true;
@@ -706,7 +707,7 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener {
 					JOptionPane.QUESTION_MESSAGE);
 			String desc = JOptionPane.showInputDialog(this, "Tipo de Seguro?", "Adicionar Vivienda",
 					JOptionPane.QUESTION_MESSAGE);
-			if (capacidad != null && piscina == 2 && parqueadero == 2 && tvCable == 2 && wifi == 2 && precio != null && num != null && desc != null) {
+			if (capacidad != null && piscina != 2 && parqueadero != 2 && tvCable != 2 && wifi != 2 && precio != null && num != null && desc != null) {
 				boolean pis = false, par = false, tv = false, wi = false;
 				if (piscina == 0)
 					pis = true;
@@ -835,7 +836,7 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener {
 					JOptionPane.QUESTION_MESSAGE);
 			int recepcion = JOptionPane.showConfirmDialog(this, "Tiene recepción 24h?");
 			int restaurante = JOptionPane.showConfirmDialog(this, "Tiene restaurante?");
-			if (capacidad != null && piscina == 2 && parqueadero == 2 && tvCable == 2 && wifi == 2 && precio != null && cat != null && tama != null && recepcion == 2 && restaurante == 2 ) {
+			if (capacidad != null && piscina != 2 && parqueadero != 2 && tvCable != 2 && wifi != 2 && precio != null && cat != null && tama != null && recepcion != 2 && restaurante != 2 ) {
 				boolean pis = false, par = false, tv = false, wi = false, rec = false, rest = false;
 				if (piscina == 0)
 					pis = true;
@@ -1295,7 +1296,7 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener {
 			if (nombre != null && idCliente != null && correo != null) {
 				VOCliente pm = aloha.adicionarCliente(Long.parseLong(idCliente), correo, nombre);
 				if (pm == null) {
-					throw new Exception("No se pudo crear una Cliente");
+					throw new Exception("No se pudo crear un Cliente");
 				}
 				String resultado = "En adicionar Cliente\n\n";
 				resultado += "Cliente adicionada exitosamente: " + pm;

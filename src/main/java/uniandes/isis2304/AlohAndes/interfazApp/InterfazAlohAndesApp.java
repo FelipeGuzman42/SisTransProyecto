@@ -345,7 +345,6 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener {
 			int habitacion = JOptionPane.showConfirmDialog(this, "Tiene habitación compartida?");
 			String precio = JOptionPane.showInputDialog(this, "Precio de la oferta?", "Adicionar oferta",
 					JOptionPane.QUESTION_MESSAGE);
-			System.out.println("Hab "+habitacion+" precio "+precio);
 			if (habitacion != 2 && precio != null) {
 				boolean hab = false;
 				if (habitacion == 0)

@@ -426,8 +426,13 @@ public class PersistenciaAlohAndes
 		return resp;
 	}
 
-	
-	
+	/* ****************************************************************
+	 * 			Método para las consultas
+	 *****************************************************************/
+	/*public OfertaComun darOfertaComunPorId (long id) 
+	{
+		return (OfertaComun) sqlOfertaComun.darOfertaComunPorId (pmf.getPersistenceManager(), id);
+	}*/
 
 
 	/* ****************************************************************

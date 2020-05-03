@@ -76,9 +76,17 @@ public class AlohAndes
 		pp.cerrarUnidadPersistencia ();
 	}
 	
-	
+	/* ****************************************************************
+	 * 			Métodos para manejar las consultas
+	 *****************************************************************/
 
-	
+	/*public List<Vecino> darListaVecino ()
+	{
+        log.info ("Listando Vecinos");
+        List<Vecino> listaVec = pp.darListaVecino() ;	
+        log.info ("Listando Empresas: " + listaVec.size() + " vecinos existentes");
+        return listaVec;
+	}*/
 
 	/* ****************************************************************
 	 * 			Métodos para manejar las OFERTACOMUN

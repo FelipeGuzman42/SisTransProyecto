@@ -1510,7 +1510,7 @@ public class PersistenciaAlohAndes
 	}
 
 	/* ****************************************************************
-	 * 			Métodos para manejar la relación CLIENTE
+	 * 			Métodos para manejar la relación CLIENTEMIEMBRO
 	 *****************************************************************/
 
 

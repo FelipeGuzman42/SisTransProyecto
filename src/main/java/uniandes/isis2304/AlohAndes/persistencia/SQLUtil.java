@@ -78,7 +78,7 @@ class SQLUtil
 	public long [] limpiarAlohAndes (PersistenceManager pm)
 	{
         Query qGustan = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaEmpresa());          
-        Query qBar = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaOrden());
+        Query qBar = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaEmpresa());
 
         long gustanEliminados = (long) qGustan.executeUnique ();
         long baresEliminados = (long) qBar.executeUnique ();

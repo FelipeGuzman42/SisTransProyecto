@@ -1,4 +1,4 @@
-{
+﻿{
 	"title": "Aplicación transaccional de AlohAndes",
 	"frameH": 600,
 	"frameW": 800,
@@ -143,8 +143,8 @@
 					"event": "listarEmpresa"
 				},
 				{
-					"label": "Buscar por Nombre",
-					"event": "buscarEmpresaPorId"
+					"label": "Eliminar por id",
+					"event": "eliminarEmpresaPorId"
 				}
 			]
 		},

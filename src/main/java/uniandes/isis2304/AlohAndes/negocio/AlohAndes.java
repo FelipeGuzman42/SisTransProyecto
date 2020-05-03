@@ -330,7 +330,7 @@ public class AlohAndes
 	}
 	
 	/* ****************************************************************
-	 * 			Métodos para manejar las VIVIENDAUNIVERSITARIA
+	 * 			Métodos para manejar los APARTAMENTOS
 	 *****************************************************************/
 
 	/**

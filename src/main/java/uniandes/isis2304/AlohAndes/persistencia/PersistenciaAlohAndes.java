@@ -294,26 +294,12 @@ public class PersistenciaAlohAndes
 	{
 		return tablas.get (0);
 	}
-
-	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Orden de parranderos
-	 */
-	public String darTablaOrden ()
-	{
-		return tablas.get (10);
-	}
-
-	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Bebida de parranderos
-	 */
-	
-
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de EMPRESA de AlohAndes
 	 */
 	public String darTablaEmpresa ()
 	{
-		return tablas.get (1);
+		return tablas.get (6);
 	}
 	
 	/**
@@ -321,35 +307,35 @@ public class PersistenciaAlohAndes
 	 */
 	public String darTablaVecino ()
 	{
-		return tablas.get (2);
+		return tablas.get (12);
 	}
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de ADMINVIVIENDA de AlohAndes
 	 */
 	public String darTablaAdminVivienda ()
 	{
-		return tablas.get (3);
+		return tablas.get (1);
 	}
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de PROPIETARIOMIEMBRO
 	 */
 	public String darTablaPropietarioMiembro ()
 	{
-		return tablas.get (4);
+		return tablas.get (10);
 	}
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de OFERTACOMUN
 	 */
 	public String darTablaOfertaComun ()
 	{
-		return tablas.get (5);
+		return tablas.get (8);
 	}
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de VIVIENDA
 	 */
 	public String darTablaVivienda ()
 	{
-		return tablas.get (6);
+		return tablas.get (13);
 	}
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de HOSPEDAJE
@@ -363,21 +349,21 @@ public class PersistenciaAlohAndes
 	 */
 	public String darTablaOfertaExclusiva()
 	{
-		return tablas.get (8);
+		return tablas.get (9);
 	}
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de VIVIENDAUNIVERSITARIA
 	 */
 	public String darTablaViviendaUniversitaria()
 	{
-		return tablas.get (9);
+		return tablas.get (14);
 	}
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de APARTAMENTO
 	 */
 	public String darTablaApartamento()
 	{
-		return tablas.get (10);
+		return tablas.get (2);
 	}
 
 
@@ -386,28 +372,28 @@ public class PersistenciaAlohAndes
 	 */
 	public String darTablaCliente ()
 	{
-		return tablas.get (11);
+		return tablas.get (3);
 	}
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de Gustan de parranderos
 	 */
 	public String darTablaClienteMiembro ()
 	{
-		return tablas.get (12);
+		return tablas.get (4);
 	}
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de Gustan de parranderos
 	 */
 	public String darTablaReservaComun ()
 	{
-		return tablas.get (13);
+		return tablas.get (11);
 	}
 	/**
 	 * @return La cadena de caracteres con el nombre de la tabla de Gustan de parranderos
 	 */
 	public String darTablaContrato ()
 	{
-		return tablas.get (14);
+		return tablas.get (5);
 	}
 	
 	
@@ -747,7 +733,7 @@ public class PersistenciaAlohAndes
 		return sqlViviendaUniversitaria.darListaViviendaUniversitaria(pmf.getPersistenceManager());
 	}
 	/* ****************************************************************
-	 * 			Métodos para manejar la VIVIENDAUNIVERSITARIA
+	 * 			Métodos para manejar la APARTAMENTO
 	 *****************************************************************/
 
 	/**

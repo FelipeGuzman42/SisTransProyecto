@@ -72,7 +72,7 @@ class SQLHospedaje
 	 */
 	public long adicionarHospedaje (PersistenceManager pm, long id, int capacidad, boolean piscina, boolean parqueadero, boolean tvCable, boolean wifi, int precio, String cat, String tama, boolean rec, boolean rest, long emp) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaHospedaje () + "(idOfertaComun, capacidad, piscina, parqueadero, tvCable, wifi, precioNoche, tamaño, recepcion24h, servicioRestaurante, idEmpresa) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaHospedaje () + "(idOFERTACOMUN, capacidad, piscina, parqueadero, tvCable, wifi, precioNoche, categoria, tamano, recepcion24h, servicioRestaurante, idEmpresa) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         q.setParameters(id, capacidad, piscina, parqueadero, tvCable, wifi, precio, cat, tama, rec, rest);
         return (long) q.executeUnique();
 	}
@@ -86,7 +86,7 @@ class SQLHospedaje
 	 */
 	public long eliminarHospedajePorId (PersistenceManager pm, long id)
 	{
-        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHospedaje () + " WHERE idOfertaComun = ?");
+        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHospedaje () + " WHERE idOFERTACOMUN = ?");
         q.setParameters(id);
         return (long) q.executeUnique();
 	}
@@ -100,7 +100,7 @@ class SQLHospedaje
 	 */
 	public Hospedaje darHospedajePorId (PersistenceManager pm, long id) 
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaHospedaje () + " WHERE idOfertaComun = ?");
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaHospedaje () + " WHERE idOFERTACOMUN = ?");
 		q.setResultClass(Hospedaje.class);
 		q.setParameters(id);
 		return (Hospedaje) q.executeUnique();

@@ -71,7 +71,7 @@ class SQLVivienda
 	 */
 	public long adicionarVivienda (PersistenceManager pm, long id, int capacidad, boolean piscina, boolean parqueadero, boolean tvCable, boolean wifi, int precio, int num, String desc, long vec) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaVivienda () + "(idOfertaComun, capacidad, piscina, parqueadero, tvCable, wifi, precioNoche, numHabitaciones, descripcionSeguro, idVecino) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaVivienda () + "(idOFERTACOMUN, capacidad, piscina, parqueadero, tvCable, wifi, precioNoche, numHabitaciones, descripcionSeguro, idVecino) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         q.setParameters(id, capacidad, piscina, parqueadero, tvCable, wifi, precio, num, desc, vec);
         return (long) q.executeUnique();
 	}
@@ -85,7 +85,7 @@ class SQLVivienda
 	 */
 	public long eliminarViviendaPorId (PersistenceManager pm, long id)
 	{
-        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaVivienda () + " WHERE idOfertaComun = ?");
+        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaVivienda () + " WHERE idOFERTACOMUN = ?");
         q.setParameters(id);
         return (long) q.executeUnique();
 	}
@@ -99,7 +99,7 @@ class SQLVivienda
 	 */
 	public Vivienda darViviendaPorId (PersistenceManager pm, long id) 
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaVivienda () + " WHERE idOfertaComun = ?");
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaVivienda () + " WHERE idOFERTACOMUN = ?");
 		q.setResultClass(Vivienda.class);
 		q.setParameters(id);
 		return (Vivienda) q.executeUnique();

@@ -86,7 +86,7 @@ class SQLContrato
 	 */
 	public long eliminarContrato (PersistenceManager pm, long idCliente, long idOferta)
 	{
-        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaContrato () + " WHERE idCliente = ? AND idOfertaComun = ?");
+        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaContrato () + " WHERE idCliente = ? AND idOfertaExclusiva = ?");
         q.setParameters(idCliente, idOferta);
         return (long) q.executeUnique();            
 	}
@@ -100,7 +100,7 @@ class SQLContrato
 	 */
 	public Contrato darContrato (PersistenceManager pm, long idCliente, long idOferta) 
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaContrato  () + " WHERE idEPS = ? AND idIPS = ?");
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaContrato  () + " WHERE idCliente = ? AND idOfertaExclusiva = ?");
 		q.setResultClass(Contrato.class);
 		q.setParameters(idCliente, idOferta);
 		return (Contrato) q.executeUnique();

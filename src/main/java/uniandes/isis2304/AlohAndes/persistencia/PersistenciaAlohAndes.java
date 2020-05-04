@@ -49,6 +49,7 @@ import uniandes.isis2304.AlohAndes.negocio.Hospedaje;
 import uniandes.isis2304.AlohAndes.negocio.OfertaComun;
 import uniandes.isis2304.AlohAndes.negocio.OfertaExclusiva;
 import uniandes.isis2304.AlohAndes.negocio.PropietarioMiembro;
+import uniandes.isis2304.AlohAndes.negocio.ReservaColectiva;
 import uniandes.isis2304.AlohAndes.negocio.Vecino;
 import uniandes.isis2304.AlohAndes.negocio.Vivienda;
 import uniandes.isis2304.AlohAndes.negocio.ViviendaUniversitaria;
@@ -162,6 +163,10 @@ public class PersistenciaAlohAndes
 	 */
 	private SQLReservaComun sqlReservaComun;
 	/**
+	 * Atributo para el acceso a la tabla ReservaComun de la base de datos
+	 */
+	private SQLReservaColectiva sqlReservaColectiva;
+	/**
 	 * Atributo para el acceso a la tabla Contrato de la base de datos
 	 */
 	private SQLContrato sqlContrato;
@@ -196,6 +201,7 @@ public class PersistenciaAlohAndes
 		tablas.add ("CLIENTEMIEMBROCOMUNIDAD");
 		tablas.add ("RESERVACOMUN");
 		tablas.add ("CONTRATO");
+		tablas.add ("RESERVACOLECTIVA");
 	}
 
 	/**
@@ -284,6 +290,7 @@ public class PersistenciaAlohAndes
 		sqlClienteMiembro = new SQLClienteMiembro(this);
 		sqlReservaComun = new SQLReservaComun (this);
 		sqlContrato = new SQLContrato(this);
+		sqlReservaColectiva = new SQLReservaColectiva (this);
 		sqlUtil = new SQLUtil(this);
 	}
 
@@ -395,7 +402,13 @@ public class PersistenciaAlohAndes
 	{
 		return tablas.get (5);
 	}
-	
+	/**
+	 * @return La cadena de caracteres con el nombre de la tabla de Gustan de parranderos
+	 */
+	public String darTablaReservaColectiva ()
+	{
+		return tablas.get (15);
+	}
 	
 	
 	/**
@@ -1615,12 +1628,12 @@ public class PersistenciaAlohAndes
 		try
 		{
 			tx.begin();
-			long tuplasInsertadas = sqlReservaComun.adicionarReservaComun(pm, idCliente, idOferta);
+			long tuplasInsertadas = sqlReservaComun.adicionarReservaComun(pm, idCliente, idOferta, inicio, fin, 0);
 			tx.commit();
 
 			log.trace ("Inserción de ReservaComun: " + idCliente +", "+idOferta + ": " + tuplasInsertadas + " tuplas insertadas");
 
-			return new ReservaComun (idCliente, idOferta, inicio, fin);
+			return new ReservaComun (idCliente, idOferta, inicio, fin, 0);
 		}
 		catch (Exception e)
 		{
@@ -1638,7 +1651,35 @@ public class PersistenciaAlohAndes
 		}
 	}
 
+	public ReservaComun adicionarReservaComunDeColectiva(long idCliente, long idOferta, Date inicio, Date fin, long colec)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasInsertadas = sqlReservaComun.adicionarReservaComun(pm, idCliente, idOferta, inicio, fin, colec);
+			tx.commit();
 
+			log.trace ("Inserción de ReservaComun: " + idCliente +", "+idOferta + ": " + tuplasInsertadas + " tuplas insertadas");
+
+			return new ReservaComun (idCliente, idOferta, inicio, fin, colec);
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+		}
 
 	/**
 	 * Método que elimina, de manera transaccional, una tupla en la tabla 
@@ -1788,6 +1829,130 @@ public class PersistenciaAlohAndes
 	{
 		return sqlContrato.darContrato(pmf.getPersistenceManager(), idCliente, idOferta);
 	}
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar RESERVACOMUN
+	 *****************************************************************/
+
+	/**
+	 * Método que inserta, de manera transaccional, una tupla en la tabla contrato
+	 * Adiciona entradas al log de la aplicación
+	 * @param nombre - El nombre del tipo de bebida
+	 * @return El objeto contrato adicionado. null si ocurre alguna Excepción
+	 */
+	public ReservaColectiva adicionarReservaColectiva(String nomb, int cantidad, String tipo, Date inicio, Date fin, long idEmp)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			long id = nextval();
+			tx.begin();
+			int count = 0;
+			boolean comp = true;
+			if(tipo == "vivienda" )
+			{
+				List<Hospedaje> ofertas = darListaHospedaje();
+				for(int o = 0; o <= ofertas.size() &&comp == true;o++)
+				{
+					long idOf = ofertas.get(o).getId();
+					ReservaComun res = adicionarReservaComun(idEmp, idOf, inicio, fin);
+					if(res != null)
+					{
+						count++;
+					}
+					else 
+					{
+						comp =false;
+					}
+				}
+			}
+			if(count ==cantidad){
+				
+			
+			long tuplasInsertadas = sqlReservaColectiva.adicionarReservaColectiva(pm, id,cantidad, nomb);
+			tx.commit();
+
+			log.trace ("Inserción de ReservaColectiva: " + id + tuplasInsertadas + " tuplas insertadas");
+
+			return new ReservaColectiva (id,cantidad, nomb);
+			}
+			else
+				return null;
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+
+
+
+	/**
+	 * Método que elimina, de manera transaccional, una tupla en la tabla 
+	 * Adiciona entradas al log de la aplicación
+	 * @param idcontrato - El identificador del tipo de bebida
+	 * @return El número de tuplas eliminadas. -1 si ocurre alguna Excepción
+	 */
+	public long eliminarReservaColectiva (long idColectiva) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long resp1 = sqlReservaComun.eliminarReservaComunPorColectiva(pm, idColectiva);
+			long resp = sqlReservaColectiva.eliminarReservaColectiva(pm, idColectiva);
+			tx.commit();
+			return resp;
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return -1;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+
+	/**
+	 * Método que consulta todas las tuplas en la tabla contrato
+	 * @return La lista de objetos contrato, construidos con base en las tuplas de la tabla contrato
+	 */
+	public List<ReservaColectiva> darListaReservaColectiva ()
+	{
+		return sqlReservaColectiva.darListaReservaColectiva (pmf.getPersistenceManager());
+	}
+
+
+	/**
+	 * Método que consulta todas las tuplas en la tabla Orden con un identificador dado
+	 * @param idOrden- El identificador de la orden
+	 * @return El objeto Orden, construido con base en las tuplas de la tabla ORDEN con el identificador dado
+	 */
+	public ReservaColectiva darReservaColectiva (long idColectiva)
+	{
+		return sqlReservaColectiva.darReservaColectiva(pmf.getPersistenceManager(), idColectiva);
+	}
+	
+	
 	/**
 	 * Elimina todas las tuplas de todas las tablas de la base de datos 
 	 * Crea y ejecuta las sentencias SQL para cada tabla de la base de datos - EL ORDEN ES IMPORTANTE 

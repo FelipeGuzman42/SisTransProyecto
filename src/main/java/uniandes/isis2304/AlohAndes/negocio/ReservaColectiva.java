@@ -22,43 +22,35 @@ import java.sql.Date;
  *
  * @author Germán Bravo
  */
-public class ReservaComun implements VOReservaComun
+public class ReservaColectiva implements VOReservaColectiva
 {
 	/* ****************************************************************
 	 * 			Atributos
 	 *****************************************************************/
 	/**
-	 * El identificador del cliente
+	 * El identificador de la reserva colectiva
 	 */
-	private long idCliente;
+	private long idColectiva;
 
-	/**
-	 * El identificador de la iferta
-	 */
-	private long idOfertaComun;
 	/**
 	 * La fecho de inicio de la reserva 
 	 */
-	private Date fechaInicio;
+	private int cantidad;
 	/**
 	 * La fecha de finalizacion de la reserva
 	 */
-	private Date fechaFin;
-	/**
-	 * El identificador de la iferta colectiva, 0 si no pertence a una.
-	 */
-	private long idOfertaColectiva;
+	private String nombreEvento;
 	/* ****************************************************************
 	 * 			Métodos
 	 *****************************************************************/
 	/**
 	 * Constructor por defecto
 	 */
-	public ReservaComun() 
+	public ReservaColectiva() 
 	{
-		this.idCliente = 0;
-		this.idOfertaComun = 0;
-		this.idOfertaColectiva= 0;
+		this.idColectiva= 0;
+		this.cantidad = 0;
+		this.nombreEvento ="";
 	}
 
 	/**
@@ -66,60 +58,45 @@ public class ReservaComun implements VOReservaComun
 	 * @param id - El identificador del tipo de bebida
 	 * @param nombre - El nombre del tipo de bebida
 	 */
-	public ReservaComun(long idCliente, long idOfertaComun,  Date inicio, Date fin, long colec) 
+	public ReservaColectiva(long idColectiva, int cantidad, String nomb) 
 	{
-		this.idCliente = idCliente;
-		this.idOfertaComun = idOfertaComun;
-		this.fechaInicio = inicio;
-		this.fechaFin = fin;
-		this.idOfertaColectiva= colec;
+		this.idColectiva = idColectiva;
+		this.cantidad = cantidad;
+		this.nombreEvento = nomb;
 	}
 
 	/**
 	 * @return El id del tipo de bebida
 	 */
-	public long getIdCliente() 
+	public long getIdColectiva() 
 	{
-		return idCliente;
+		return idColectiva;
 	}
 
 	/**
 	 * @param id - El nuevo id del tipo de bebida
 	 */
-	public void setIdOferta(long idOferta) 
+	public void setIdColectiva(long idColectiva) 
 	{
-		this.idOfertaComun = idOferta;
+		this.idColectiva = idColectiva;
 	}
 
-	/**
-	 * @return El id del tipo de bebida
-	 */
-	public long getIdOferta() 
-	{
-		return idOfertaComun;
-	}
-
+	
 	/**
 	 * @param id - El nuevo 
 	 */
-	public void setIdCliente(long idCliente) 
+	public void setNombre(String nomb) 
 	{
-		this.idCliente = idCliente;
+		this.nombreEvento= nomb;
 	}
 	/**
 	 * 
 	 */
-	public void setFechaInicio(Date inicio)
+	public void setCantidad(int cant)
 	{
-		this.fechaInicio = inicio;
+		this.cantidad = cant;
 	}
-	/**
-	 * 
-	 */
-	public void setFechaFin(Date fin)
-	{
-		this.fechaFin = fin;
-	}
+
 
 	/**
 	 * @return Una cadena de caracteres con la información del tipo de bebida
@@ -127,20 +104,22 @@ public class ReservaComun implements VOReservaComun
 	@Override
 	public String toString() 
 	{
-		return "ReservaComun [idCliente=" + idCliente +", idOfertaComun"+idOfertaComun+ "]";
+		return "ReservaColectiva [idColectiva=" + idColectiva +", nombreEvento:" + nombreEvento + "]";
 	}
 
 	@Override
-	public Date getFechaInicio() {
+	public int getCantidad() {
 		// TODO Auto-generated method stub
-		return fechaInicio;
+		return cantidad;
 	}
 
 	@Override
-	public Date getFechaFin() {
+	public String getNombre() {
 		// TODO Auto-generated method stub
-		return fechaFin;
+		return nombreEvento;
 	}
+
+	
 
 	
 

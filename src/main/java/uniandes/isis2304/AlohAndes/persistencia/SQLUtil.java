@@ -18,6 +18,8 @@ package uniandes.isis2304.AlohAndes.persistencia;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import uniandes.isis2304.AlohAndes.negocio.OfertaComun;
+
 /**
  * Clase que encapsula los métodos que hacen acceso a la base de datos para el concepto BAR de Parranderos
  * Nótese que es una clase que es sólo conocida en el paquete de persistencia
@@ -68,6 +70,15 @@ class SQLUtil
         long resp = (long) q.executeUnique();
         return resp;
 	}
+	
+	/*
+	public OfertaComun darOfertaComunPorId (PersistenceManager pm, long id) 
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaOfertaComun () + " WHERE idOfertaComun = ?");
+		q.setResultClass(OfertaComun.class);
+		q.setParameters(id);
+		return (OfertaComun) q.executeUnique();
+	}*/
 
 	/**
 	 * Crea y ejecuta las sentencias SQL para cada tabla de la base de datos - EL ORDEN ES IMPORTANTE 

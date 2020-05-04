@@ -210,6 +210,24 @@ public class InterfazAlohAndesApp extends JFrame implements ActionListener {
 		setJMenuBar(menuBar);
 	}
 
+	/* ****************************************************************
+	 * Requerimientos de consulta
+	 * ****************************************************************
+	 */
+	/*public void requerimientoC1() {
+		try {
+			List<VOOfertaComun> lista = aloha.darVOOfertaComun();
+
+			String resultado = "En listarOfertaComun";
+			resultado += "\n" + listarOfertaComun(lista);
+			panelDatos.actualizarInterfaz(resultado);
+			resultado += "\n Operación terminada";
+		} catch (Exception e) {
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}*/
 	/*
 	 * **************************************************************** 
 	 * CRUD de OfertaComun

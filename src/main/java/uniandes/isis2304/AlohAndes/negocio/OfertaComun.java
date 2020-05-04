@@ -50,6 +50,10 @@ public class OfertaComun implements VOOfertaComun
 	 * Si tiene wifi la oferta
 	 */
 	private boolean wifi;
+	/**
+	 * Si esta hbailitado
+	 */
+	private boolean habilitado;
 	
 	/**
 	 * El precio por noche del hospedaje 
@@ -70,6 +74,7 @@ public class OfertaComun implements VOOfertaComun
     	this.parqueadero = false;
     	this.tvCable = false;
     	this.wifi = false;
+    	this.habilitado = false;
     	this.precioNoche = 0;
     	
 	}
@@ -89,6 +94,7 @@ public class OfertaComun implements VOOfertaComun
     	this.tvCable = tvCable;
     	this.wifi = wifi;
     	this.precioNoche = precioNoche;
+    	this.habilitado = true;
 	}
 
     /**
@@ -108,8 +114,15 @@ public class OfertaComun implements VOOfertaComun
 	}
 	
 
+	public void setHabilitado(boolean hab) 
+	{
+		this.habilitado = hab;
+	}
 
-
+	public boolean estaHabilitado() {
+		
+		return habilitado;
+	}
 	@Override
 	/**
 	 * @return Una cadena de caracteres con todos los atributos del bar

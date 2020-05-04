@@ -1637,7 +1637,6 @@ public class PersistenciaAlohAndes
 			tx.commit();
 
 			log.trace ("Inserción de ReservaComun: " + idCliente +", "+idOferta + ": " + tuplasInsertadas + " tuplas insertadas");
-
 			return new ReservaComun (idCliente, idOferta, inicio, fin, 0);
 		}
 		catch (Exception e)

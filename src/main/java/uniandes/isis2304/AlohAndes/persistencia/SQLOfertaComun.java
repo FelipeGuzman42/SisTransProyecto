@@ -90,6 +90,18 @@ class SQLOfertaComun
         q.setParameters(id);
         return (long) q.executeUnique();            
 	}
+	/**
+	 * Crea y ejecuta la sentencia SQL para eliminar UN BEBEDOR de la base de datos de Parranderos, por su identificador
+	 * @param pm - El manejador de persistencia
+	 * @param idBebedor - El identificador del bebeodor
+	 * @return EL número de tuplas eliminadas
+	 */
+	public long habilitarOfertasYDeshabilitar(PersistenceManager pm, boolean b)
+	{
+        Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaOfertaComun () + " SET habilitado = ?");
+        q.setParameters(b);
+        return (long) q.executeUnique();            
+	}
 
 	/**
 	 * Crea y ejecuta la sentencia SQL para encontrar la información de UN BEBEDOR de la 
